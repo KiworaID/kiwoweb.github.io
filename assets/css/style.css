@@ -1,7 +1,4 @@
-/* Global Styles */
-@import url('https://fonts.googleapis.com/css2?family=Minecraft&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-
+/* Global Styles & Variables */
 :root {
     --minecraft-green: #44bd32;
     --minecraft-dark: #1f1f1f;
@@ -10,11 +7,16 @@
     --gradient-start: #2ecc71;
     --gradient-mid: #27ae60;
     --gradient-end: #219f54;
+    --navbar-bg: rgba(15, 25, 15, 0.95);
 }
 
-/* Custom Scrollbar */
+/* Smooth Scroll & Scrollbar */
+html {
+    scroll-behavior: smooth;
+}
+
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -37,20 +39,20 @@ body {
     background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
     color: white;
     overflow-x: hidden;
-    padding-top: 60px;
 }
 
-/* Navbar */
+/* Navbar Styles */
 .navbar {
-    background: rgba(0, 0, 0, 0.95);
+    background: var(--navbar-bg) !important;
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-bottom: 2px solid var(--minecraft-accent);
-    padding: 0.5rem 0;
+    padding: 15px 0;
+    transition: all 0.3s ease;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-    animation: slideInLeft 0.8s ease-out;
 }
 
 .navbar-brand {
@@ -58,283 +60,92 @@ body {
     font-size: 1.8rem;
     color: var(--minecraft-accent) !important;
     text-shadow: 2px 2px 0px #000;
-    padding: 0.3rem 0;
-    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.navbar-brand:hover {
-    transform: scale(1.05);
-}
-
-.nav-link {
-    font-family: 'Minecraft', sans-serif;
-    font-size: 1rem;
+.navbar-nav .nav-link {
     color: white !important;
-    margin: 0 1rem;
-    position: relative;
+    font-weight: 500;
+    padding: 8px 16px;
     transition: all 0.3s ease;
-    padding: 0.5rem 1rem;
+    position: relative;
 }
 
-.nav-link::after {
+.navbar-nav .nav-link::after {
     content: '';
     position: absolute;
-    bottom: -5px;
+    bottom: -2px;
     left: 0;
     width: 0;
-    height: 3px;
+    height: 2px;
     background: var(--minecraft-accent);
     transition: width 0.3s ease;
 }
 
-.nav-link:hover::after {
+.navbar-nav .nav-link:hover::after {
     width: 100%;
 }
 
 /* Hero Section */
 .hero-section {
-    min-height: calc(100vh - 60px);
+    min-height: 100vh;
     background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('../images/minecraft-bg.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     display: flex;
     align-items: center;
-    position: relative;
-    padding: 4rem 0;
-}
-
-.hero-content {
-    padding: 4rem 0;
+    padding: 120px 0;
+    margin-top: 60px;
 }
 
 .hero-title {
     font-family: 'Minecraft', sans-serif;
-    font-size: 4rem;
-    margin-bottom: 1.5rem;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--minecraft-accent);
     text-shadow: 3px 3px 0px #000;
-    animation: slideInLeft 0.8s ease-out;
+    margin-bottom: 1.5rem;
 }
 
 .hero-subtitle {
     font-size: 1.2rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-    animation: slideInRight 0.8s ease-out 0.2s;
-    animation-fill-mode: both;
-}
-
-/* Product Cards */
-.products-section {
-    padding: 6rem 0;
-    background: rgba(0,0,0,0.9);
-}
-
-.section-title {
-    font-family: 'Minecraft', sans-serif;
-    text-align: center;
-    margin-bottom: 4rem;
-    color: var(--minecraft-accent);
-    text-shadow: 2px 2px 0px #000;
-}
-
-.product-card {
-    background: rgba(31, 31, 31, 0.9);
-    border: 3px solid var(--minecraft-accent);
-    border-radius: 15px;
-    overflow: hidden;
-    transition: all 0.3s ease;
+    color: rgba(255, 255, 255, 0.9);
     margin-bottom: 2rem;
 }
 
-.product-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(68, 189, 50, 0.3);
-}
-
-.product-image {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    border-bottom: 3px solid var(--minecraft-accent);
-}
-
-.product-content {
-    padding: 1.5rem;
-}
-
-.product-title {
-    font-family: 'Minecraft', sans-serif;
-    font-size: 1.8rem;
-    color: var(--minecraft-accent);
-    margin-bottom: 1rem;
-}
-
-.product-description {
-    color: #ddd;
-    margin-bottom: 1.5rem;
-    min-height: 60px;
-}
-
+/* Price Tags */
 .price-tag {
+    display: flex;
+    gap: 15px;
+    align-items: center;
     background: rgba(0,0,0,0.5);
-    padding: 0.8rem;
+    padding: 15px;
     border-radius: 10px;
     border: 2px solid var(--minecraft-accent);
     display: inline-block;
     margin-bottom: 1.5rem;
-    animation: fadeIn 0.8s ease-out 0.4s;
-    animation-fill-mode: both;
-    transition: all 0.3s ease;
-}
-
-.price-tag:hover {
-    transform: scale(1.05);
 }
 
 .original-price {
-    text-decoration: line-through;
+    font-size: 1.5rem;
     color: #ff6b6b;
-    margin-right: 1rem;
+    text-decoration: line-through;
 }
 
 .discount-price {
+    font-size: 2rem;
     color: var(--minecraft-accent);
-    font-weight: bold;
-    font-size: 1.5rem;
+    font-weight: 600;
 }
 
-.btn-minecraft {
-    width: 100%;
-    background: var(--minecraft-accent);
-    color: white;
-    font-family: 'Minecraft', sans-serif;
-    padding: 1rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    animation: fadeIn 0.8s ease-out 0.6s;
-    animation-fill-mode: both;
-}
-
-.btn-minecraft::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: 0.5s;
-}
-
-.btn-minecraft:hover::before {
-    left: 100%;
-}
-
-.btn-minecraft:hover {
-    background: #3aa528;
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(68, 189, 50, 0.4);
-}
-
-/* Footer */
-footer {
-    background: rgba(0,0,0,0.95);
-    border-top: 4px solid var(--minecraft-accent);
-    padding: 3rem 0;
-}
-
-.footer-title {
-    font-family: 'Minecraft', sans-serif;
-    color: var(--minecraft-accent);
-    margin-bottom: 1rem;
-}
-
-.social-links {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-}
-
-.social-links a {
-    color: var(--minecraft-accent);
-    font-size: 1.8rem;
-    transition: all 0.3s ease;
-}
-
-.social-links a:hover {
-    color: white;
-    transform: translateY(-3px);
-}
-
-/* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translateX(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .hero-title {
-        font-size: 3rem;
-    }
-    
-    .product-card {
-        margin-bottom: 2rem;
-    }
-}
-
-/* Benefits Section */
+/* Benefit Cards */
 .benefits-section {
-    padding: 6rem 0;
+    padding: 80px 0;
     background: linear-gradient(135deg, #0a1f0a 0%, #1a2f1a 100%);
     position: relative;
-    overflow: hidden;
 }
 
 .benefits-section::before {
@@ -352,216 +163,139 @@ footer {
     pointer-events: none;
 }
 
+.section-title {
+    font-family: 'Minecraft', sans-serif;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--minecraft-accent);
+    text-shadow: 2px 2px 0px #000;
+}
+
 .benefit-card {
     background: rgba(15, 25, 15, 0.95);
     border: 2px solid var(--gradient-start);
-    border-radius: 10px;
-    padding: 2rem;
+    border-radius: 15px;
+    padding: 25px;
     height: 100%;
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    min-height: 280px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    animation: fadeIn 0.8s ease-out;
-    animation-fill-mode: both;
 }
 
 .benefit-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 5px 20px rgba(46, 204, 113, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(46, 204, 113, 0.2);
     border-color: #fff;
 }
 
 .benefit-icon {
     font-size: 2.5rem;
-    margin-bottom: 1.5rem;
     color: var(--gradient-start);
     text-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    border: 2px solid var(--gradient-start);
+    margin: 0 auto 1.5rem;
+    transform: rotate(0deg);
     transition: all 0.3s ease;
 }
 
-.benefit-card:hover .benefit-icon {
-    transform: scale(1.2);
-    color: #fff;
+.benefit-icon i {
+    font-size: 2.5rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.benefit-icon img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
 }
 
 .benefit-title {
     font-family: 'Minecraft', sans-serif;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     margin-bottom: 1rem;
     color: var(--gradient-start);
     text-shadow: 0 0 5px rgba(46, 204, 113, 0.3);
 }
 
 .benefit-description {
-    color: #ffffff;
-    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
     line-height: 1.6;
-    margin: 0;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 /* Purchase Section */
 .purchase-section {
-    text-align: center;
-    margin-top: 4rem;
-    padding: 2rem;
-    background: rgba(15, 25, 15, 0.8);
+    margin-top: 50px;
+    padding: 30px;
     border-radius: 15px;
+    background: rgba(15, 25, 15, 0.8);
     border: 2px solid var(--gradient-start);
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    animation: fadeIn 0.8s ease-out;
-    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
-.price-container {
-    margin-bottom: 1.5rem;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.3);
+/* Buttons */
+.btn-minecraft {
+    background: var(--minecraft-accent);
+    color: white;
+    padding: 12px 30px;
     border-radius: 8px;
-    display: inline-block;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.original-price {
-    text-decoration: line-through;
-    color: #ff6b6b;
-    font-size: 1.2rem;
-    margin-right: 1rem;
-}
-
-.discount-price {
-    color: var(--gradient-start);
-    font-weight: bold;
-    font-size: 1.5rem;
-    text-shadow: 0 0 5px rgba(46, 204, 113, 0.3);
+.btn-minecraft:hover {
+    background: #3aa528;
+    transform: scale(1.05);
+    color: white;
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
 }
 
 .btn-minecraft-buy {
     background: var(--gradient-start);
     color: white;
-    font-family: 'Minecraft', sans-serif;
-    padding: 1rem 3rem;
-    border: none;
+    padding: 15px 40px;
     border-radius: 8px;
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    position: relative;
-    overflow: hidden;
+    font-weight: 600;
     transition: all 0.3s ease;
+    border: none;
     text-decoration: none;
-    display: inline-block;
+    text-transform: uppercase;
     letter-spacing: 1px;
-    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
-    width: 100%;
-    max-width: 300px;
-    animation: pulse 2s infinite;
-    transition: all 0.3s ease;
-}
-
-.btn-minecraft-buy::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: 0.5s;
 }
 
 .btn-minecraft-buy:hover {
-    background: #3aa528;
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+    background: #27ae60;
+    transform: scale(1.05);
     color: white;
-    text-decoration: none;
-    animation: none;
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
 }
 
-.btn-minecraft-buy:hover::before {
-    left: 100%;
-}
-
-/* Section Title */
-.section-title {
-    font-family: 'Minecraft', sans-serif;
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 3rem;
-    color: var(--gradient-start);
-    text-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
-    position: relative;
-    display: inline-block;
-    left: 50%;
-    transform: translateX(-50%);
-    padding-bottom: 1rem;
-}
-
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        var(--gradient-start) 50%, 
-        transparent 100%
-    );
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .benefit-card {
-        margin-bottom: 1.5rem;
-        min-height: auto;
-        padding: 1.5rem;
-    }
-
-    .benefit-title {
-        font-size: 1.5rem;
-    }
-
-    .benefit-description {
-        font-size: 0.9rem;
-    }
-
-    .price-container {
-        padding: 0.8rem;
-    }
-
-    .original-price {
-        font-size: 1rem;
-    }
-
-    .discount-price {
-        font-size: 1.3rem;
-    }
-
-    .btn-minecraft-buy {
-        padding: 0.8rem 2rem;
-        font-size: 1rem;
-    }
-
-    .section-title {
-        font-size: 2rem;
-    }
-}
-
-#about {
+/* About Section */
+.about-section {
+    padding: 80px 0;
     background: rgba(15, 25, 15, 0.8);
-    padding: 5rem 0;
     position: relative;
 }
 
-#about::before {
+.about-section::before {
     content: '';
     position: absolute;
     top: 0;
@@ -572,93 +306,118 @@ footer {
     pointer-events: none;
 }
 
-#about .section-title {
-    color: var(--minecraft-accent);
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    position: relative;
-    display: inline-block;
-    left: 50%;
-    transform: translateX(-50%);
-    padding-bottom: 1rem;
-    animation: fadeIn 0.8s ease-out;
-}
-
-#about .section-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, var(--minecraft-accent), transparent);
-}
-
-#about .lead {
-    color: #e0e0e0;
-    font-size: 1.1rem;
-    line-height: 1.8;
-    max-width: 800px;
-    margin: 0 auto 2rem;
-    text-align: center;
-    animation: fadeIn 0.8s ease-out 0.2s;
-    animation-fill-mode: both;
-}
-
-#about .social-links {
+/* Social Links */
+.social-links {
     display: flex;
     justify-content: center;
-    gap: 2rem;
-    margin-top: 2rem;
+    gap: 20px;
 }
 
-#about .social-links a {
+.social-links a {
     color: var(--minecraft-accent);
-    font-size: 2rem;
+    font-size: 1.5rem;
     transition: all 0.3s ease;
     background: rgba(0, 0, 0, 0.2);
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     border: 2px solid var(--minecraft-accent);
-    animation: fadeIn 0.8s ease-out;
-    animation-fill-mode: both;
 }
 
-#about .social-links a:hover {
+.social-links a:hover {
     color: white;
     background: var(--minecraft-accent);
-    transform: translateY(-5px) rotate(8deg);
+    transform: translateY(-3px) rotate(8deg);
     box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
 }
 
+/* Footer */
+footer {
+    background: rgba(0, 0, 0, 0.95);
+    border-top: 4px solid var(--minecraft-accent);
+    padding: 40px 0;
+    color: white;
+}
+
+.footer-title {
+    font-family: 'Minecraft', sans-serif;
+    font-weight: 600;
+    color: var(--minecraft-accent);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Responsive Styles */
 @media (max-width: 768px) {
-    #about {
-        padding: 3rem 1rem;
+    .hero-section {
+        padding: 80px 0 40px;
+        text-align: center;
     }
     
-    #about .section-title {
+    .hero-title {
         font-size: 2rem;
-        margin-bottom: 1.5rem;
     }
     
-    #about .lead {
+    .hero-subtitle {
         font-size: 1rem;
-        line-height: 1.6;
-        padding: 0 1rem;
-        margin-bottom: 1.5rem;
     }
     
-    #about .social-links {
-        gap: 1rem;
+    .benefit-card {
+        margin-bottom: 20px;
     }
     
-    #about .social-links a {
-        font-size: 1.5rem;
-        width: 50px;
-        height: 50px;
+    .price-tag {
+        justify-content: center;
     }
-} 
+    
+    .navbar-brand img {
+        height: 40px;
+    }
+
+    .social-links a {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .price-tag .original-price,
+    .price-tag .discount-price {
+        font-size: 1.2rem;
+    }
+    
+    .benefit-card {
+        padding: 15px;
+    }
+    
+    .benefit-title {
+        font-size: 1.2rem;
+    }
+    
+    .social-links a {
+        margin: 0 10px;
+    }
+}
+ 

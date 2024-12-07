@@ -6,31 +6,63 @@ document.addEventListener('DOMContentLoaded', () => {
         offset: 100
     });
 
-    // Smooth scroll for navigation
+    // Smooth scroll untuk link navigasi
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
-            const offset = 80; // Navbar height + padding
-            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
         });
     });
 
-    // Navbar background change on scroll
+    // Navbar scroll effect
     const navbar = document.querySelector('.navbar');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(0, 0, 0, 0.95)';
-            navbar.style.padding = '0.5rem 0';
+            navbar.style.background = 'rgba(44, 62, 80, 0.95)';
+            navbar.style.padding = '10px 0';
         } else {
-            navbar.style.background = 'rgba(0, 0, 0, 0.7)';
-            navbar.style.padding = '1rem 0';
+            navbar.style.background = 'rgba(44, 62, 80, 0.9)';
+            navbar.style.padding = '15px 0';
         }
+    });
+
+    // Animasi fade-in untuk elemen saat scroll
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    fadeElements.forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(20px)';
+        element.style.transition = 'all 0.6s ease-out';
+        observer.observe(element);
+    });
+
+    // Hover effect untuk benefit cards
+    document.querySelectorAll('.benefit-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-5px)';
+            card.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.2)';
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+            card.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
+        });
     });
 
     // Add hover sound effect to buttons
